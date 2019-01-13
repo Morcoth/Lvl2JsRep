@@ -8,24 +8,34 @@ $(document).ready(function () {
         $(this).addClass('selected');
         return false;
     });
-    
+    var ArrayOfCity=[]
     let $ShowCityLabel = $('#ShowCityLabel');
     let $FormOfCitys = $('#FormOfCitys');
+    var inputString='';
 
      $.ajax({
          type: 'GET',
          url: './ArrayOfCity.json',
          dataType: 'json',
          success: function (data) {
-             $ShowCityLabel.html(`${data.cities.city[1]}`);
+            ArrayOfCity=data.cities;
          },
-         error: function (error) {
-             console.log(error);
-         }
+         
      });
+     function ResultString(ArrayOfCity, inputString) {
+        
+        $ShowCityLabel=Array(ArrayOfCity).filter(inputString);
+         
+     }
+
+     $(document).on('input',function(ev){
+        inputString=$(ev.target).val();
+        ResultString(Array(ArrayOfCity), inputString);
+
+      });
 
 
-     $('#FormOfCitys').keyup(function(){
+     $FormOfCitys.keypress(function(){
         var Value = $('#FormOfCitys').val();
         $('#errmsg').empty();
         $('#errmsg').text(Value);

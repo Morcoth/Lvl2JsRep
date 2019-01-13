@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>ES6</title>
+    <script>
+        //ES6
+        window.onload = function () {
+          //Выборка DOM
+          var btn1 = document.getElementById('btn1');
+          var d1 = document.getElementById('d1');
+
+          btn1.addEventListener('click', function () {
+
+              //Fetch
+              fetch('./items.json', {
+                  method: 'GET'
+              }).then(function (response) {
+                  console.log(response.headers.get('Content-Type'));
+                  console.log(response.status);
+
+                  return response.json(); //Вернуть данные в формате json
+              }).then(function (items) {
+                  console.log(items);
+              });
+
+          });
+        };
+    </script>
+</head>
+<body>
+<button id="btn1">Получить данные</button>
+<div id="d1"></div>
+</body>
+</html>

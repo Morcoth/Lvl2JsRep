@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>JSON + AJAX</title>
+    <script>
+        var userJson = '{"name": "Anna", "email": "1@2.ru", "isAdmin": true}';
+
+        var user = JSON.parse(userJson);
+        console.log(user);
+        console.log(user.name, user.email, user.isAdmin);
+
+        user.friends = ['Olga', 'Peter'];
+
+        user.address = {
+            city: 'Moscow',
+            postalCode: '123456',
+            street: 'New Street'
+        };
+
+        user.date = '2018-05-12';
+
+        console.log(user);
+
+        //var jsonFromUser = JSON.stringify(user, ['name', 'isAdmin'], 4);
+        var jsonFromUser = JSON.stringify(user, null, 4);
+        console.log(jsonFromUser);
+
+        var user2 = JSON.parse(jsonFromUser, function (key, value) {
+            console.log('!', key, value);
+
+            //Можно также использовать switch
+
+            if(key==='date'){
+                value = new Date(value);
+            }
+
+            return value;
+        });
+        console.log(user2);
+        console.log('Получение числа:', user2.date.getDate());
+        console.log('Получение месяца:', user2.date.getMonth());
+        console.log('Получение года:', user2.date.getFullYear());
+
+        //AJAX
+        //Синхронный запрос
+        var xhr = new XMLHttpRequest();
+        xhr.open('GET', 'items.json', false); //false - синхронный запрос
+        xhr.send(); //Отправка запроса на сервер
+        if(xhr.status !== 200){
+            console.log('Ошибка на стороне сервера', xhr.status, xhr.statusText);
+        } else {
+            console.log(xhr.responseText);
+            var items = JSON.parse(xhr.responseText);
+            console.log(items);
+            console.log(items[0].href);
+        }
+
+        //Асинхронный запрос
+        xhr = new XMLHttpRequest();
+        xhr.open('GET', 'items.json', true); //true - асинхронный запрос
+
+        xhr.onreadystatechange = function () {
+            console.log(xhr.readyState);
+
+            //0 - запрос не инициализирован
+            //1 - загрузка
+            //2 - запрос принят сервером
+            //3 - обмен данными
+            //4 - запрос выполнен
+            if(xhr.readyState === 2){
+                document.getElementById('el').innerText = '<b>Экран ожидания</b>';
+            }
+
+            if(xhr.readyState !== 4){return;}
+            //Удаление экрана ожидания
+            if(xhr.status !== 200){
+                console.log('Ошибка на стороне сервера', xhr.status, xhr.statusText);
+            } else {
+                console.log(xhr.responseText);
+                var items = JSON.parse(xhr.responseText);
+                console.log(items);
+                console.log(items[0].href);
+            }
+        };
+
+        xhr.send();
+        console.log(xhr);
+    </script>
+</head>
+<body>
+
+</body>
+</html>

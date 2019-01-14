@@ -1,154 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
-    <title>jQuery</title>
-    <style>
-        .orange {
-            color: green;
-        }
-    </style>
-    <script src="jquery-3.3.1.js"></script>
-    <script>
-        console.log($, jQuery);
-        //window.onload
-
-        //Вариант 1
-        $(document).ready(function () {
-            console.log($('p'));
-            $('p').addClass('orange').css('font-weight', 'bold');
-
-            $('#p1').css({
-                color: 'lime',
-                textDecoration: 'underline',
-            });
-
-            $('.p2').removeClass('orange');
-
-            //Первый элемент
-            console.log($('p:first'));
-
-            //Крайний элемент
-            console.log($('p:last'));
-
-            //Выбор элемента по номеру
-            console.log($('p:eq(2)')); //Третий элемент, так как нумерация с 0
-
-            //Выбор элемента внутри другого элемента
-            var $myB = $('#d1').find('b.b1');
-            console.log($myB);
-            console.log($myB.text()); //textContent
-            console.log($myB.html()); //innerHTML
-
-            //Перебор элементов
-            $('p').each(function (index, item) {
-               console.log(index, item);
-               //JS
-               var text = item.textContent;
-               console.log('JS', text);
-
-               //Снова jQuery
-                var $item = $(item);
-                var text2 = $item.text();
-                console.log('jQuery', text2);
-            });
-
-            //Вставка элемента в DOM
-            var $newEl = $('<b>New el</b>');
-            $('body').append($newEl);
-
-            //Работа с событиями
-            var $container = $('.container');
-            var $btn1 = $('.btn1');
-            var $btn2 = $('.btn2');
-            var $btn3 = $('.btn3');
-            var $btn4 = $('.btn4');
-
-            $btn1.on('click', function () {
-                //$container.hide();
-                //$container.slideUp(3000); //3с
-                $container.fadeOut(3000);
-            });
-
-            $btn2.on('click', function () {
-                //$container.show();
-                //$container.slideDown(3000);
-                $container.fadeIn(3000);
-            });
-
-            $btn3.on('click', function () {
-                //$container.toggle();
-                //$container.slideToggle(3000);
-                $container.fadeToggle(3000);
-            });
-
-            $btn4.on('click', function () {
-                $container.fadeTo(2000, 0.5); //Полупрозрачный элемент
-
-                setTimeout(function () {
-                    $container.fadeTo(2000, 1);
-                }, 5000);
-            });
-
-            $('.ajax-btn').on('click', function () {
-               var $ajaxData = $('.ajax-data');
-
-               //Выполняем запрос
-                $.ajax({
-                    type: 'GET',
-                    url: './user.json',
-                    //async: false, //Синхронный запрос
-                    dataType: 'json', //html, text, json
-                    success: function (data) {
-                        $ajaxData.html(`${data.name} - <b>${data.tel}</b>`);
-                    },
-                    error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
-        });
-
-        //Вариант 2
-        // jQuery(document).ready(function () {
-        //
-        // });
-    </script>
+    <title>HW4</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="http://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+    <script src="js/tabs.js"></script>
 </head>
+
 <body>
-<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ex exercitationem expedita fugit neque nihil nisi quo rem
-    saepe? Architecto, culpa dolorum esse explicabo placeat possimus quos ratione recusandae reprehenderit sapiente.</p>
-<p id="p1">Aliquam asperiores autem commodi consectetur doloribus dolorum error et illum labore magnam molestias nemo neque
-    nesciunt quisquam sequi suscipit, voluptate? Atque eius ipsum mollitia porro, quia reprehenderit suscipit temporibus
-    veniam!</p>
-<p class="p2">Ad aliquam aspernatur at blanditiis commodi consectetur cupiditate eligendi esse est illum impedit, incidunt ipsum
-    iste molestias necessitatibus numquam possimus, qui velit vitae voluptatum. Alias eum harum nemo nisi
-    perspiciatis.</p>
-<p class="p2">Amet beatae blanditiis dolorum explicabo harum inventore nemo quasi recusandae voluptas. Consequatur consequuntur
-    dolorum, earum non obcaecati provident quos rem rerum saepe veritatis? Accusantium error iste nihil quaerat rerum,
-    voluptates.</p>
-<p>Accusantium architecto at cupiditate debitis doloremque doloribus ducimus eaque, error esse ex fugit incidunt ipsum
-    laboriosam necessitatibus neque numquam obcaecati odio odit, placeat possimus quaerat quidem quis reiciendis veniam
-    voluptatem?</p>
-<p>Accusamus deserunt ea explicabo quae quaerat quia. A aliquam at commodi dolorem enim impedit, itaque molestiae nulla
-    officia placeat porro possimus quo sed similique tempora temporibus ullam unde, veritatis voluptatibus.</p>
-<p>Aliquam doloribus dolorum hic nesciunt nostrum odio pariatur rerum totam voluptates voluptatum. Amet autem dolorem
-    iste iusto laudantium quis rerum sint veniam veritatis! Ad dolore maiores praesentium quidem saepe tempora.</p>
-<div id="d1">
-    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque beatae commodi deleniti, dolore, esse fugit ipsum iure libero nobis, numquam perspiciatis quaerat sint tenetur! Amet at cum nam nemo sed?
-    <b class="b1">Искомый <span>текст</span></b>
-</div>
-<hr>
-<div class="container">
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam amet aperiam distinctio doloremque error, esse facere, iste maiores mollitia, numquam officia officiis quam quia repellendus saepe sint sit vitae. Illum.</p>
-</div>
-<button class="btn1">Свернуть блок</button>
-<button class="btn2">Развернуть блок</button>
-<button class="btn3">Свернуть/Развернуть блок</button>
-<button class="btn4">Полупрозрачный блок</button>
-<hr>
-<h2>Ajax</h2>
-<div class="ajax-data"></div>
-<button class="ajax-btn">Получить данные</button>
+    <div class="tabsControl">
+        <ul class="tabNav">
+            <li><a href="#first">First Tab</a></li>
+            <li><a href="#second">Second Tab</a></li>
+            <li><a href="#third">Third Tab</a></li>
+        </ul>
+        <div id="first">
+            <p>FirstTabContent</p>
+        </div>
+        <div id="second">
+            <p>SecondTabContent</p>
+        </div>
+        <div id="third">
+            <p>ThirdTabContent</p>
+        </div>
+    </div>
+        <input type="text" id="FormOfCitys">
+        <label id="ShowCityLabel"> </label>
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
+
 </html>

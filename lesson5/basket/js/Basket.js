@@ -71,9 +71,14 @@ class Basket {
         this.refresh(); //Перерисовываем корзину
     }
 
-    remove(idProduct)
+    remove(idProduct, price)
     {
         //TODO: ДЗ - реализация удаления товара из корзины
+        let i = this.basketItems.findIndex(x=>x.id_product==idProduct);
+        if (i!=-1){
+            this.basketItems.pop(this.basketItems[i]);
+            this.amount-=price;       
+        }
 
         this.refresh();
     }

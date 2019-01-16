@@ -21,11 +21,17 @@ class Good {
         });
 
         //TODO: Кнопка удаления товара
+        let $goodBtnRemove = $('<button/>', {
+            class: 'removegood',
+            text: 'удалить из корзины',
+            'data-id': this.id
+        });
 
         //Создаем структуру товара
         $goodTitle.appendTo($goodContainer);
         $goodPrice.appendTo($goodContainer);
         $goodBtnAdd.appendTo($goodContainer);
+        $goodBtnRemove.appendTo($goodContainer);
         $goodContainer.appendTo($jQueryElement);
     }
 }

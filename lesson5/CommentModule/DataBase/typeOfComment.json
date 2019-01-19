@@ -1,0 +1,12 @@
+{
+    "reviews": [
+      {
+        "idReview": "0",
+        "text": "Like"
+      },
+      {
+        "idReview": "1",
+        "text": "disike"
+      }
+    ]
+  }

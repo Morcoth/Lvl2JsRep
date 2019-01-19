@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Comments</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src=" ../basket/js/jquery-3.3.1.js"></script>
+    <script src="js/Review.js"></script>
+    <script src="js/main.js"></script></head>
+    <script>
+        $(document).ready(function () {
+            var review = new Review($('#reviews'));
+            review.render();
+            $('.btnSubmit').on('click', function () {
+                var $text = $('.fieldReview');
+                if ($text.val() !== '') {
+                    review.add($text.val());
+                }
+            });
+            $('.btnApprove').on('click', function () {
+                console.log('Ок');
+            });
+        });
+    </script>
+<body>
+    <div id="reviews"></div>
+    <div id="fieldForReview">
+        <textarea class="fieldReview" placeholder="Write comment"></textarea>
+        <button class="btnSubmit">Отправить</button>
+    </div>
+
+</body>
+</html>

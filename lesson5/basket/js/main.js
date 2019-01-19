@@ -17,9 +17,14 @@ $(document).ready(function () {
     $('.buygood').on('click', function () {
         let idProduct = parseInt($(this).attr('data-id'));
         let price = parseInt($(this).parent().find('.product-price').text());
-
         basket.addProduct(idProduct, price);
-    });
+    });   
 
     //TODO: Удаление товара
+    $('.removegood').on('click', function(){
+        let idProduct = parseInt($(this).attr('data-id'));
+        let price = parseInt($(this).parent().find('.product-price').text());
+        basket.remove(idProduct, price);
+
+    });
 });

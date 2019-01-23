@@ -1,12 +1,11 @@
 var gulp = require('gulp'),
-    css = require('gulp-css'),
+    css = require('gulp-csso'),
     uglifyJs = require('gulp-uglifyjs'),
     autoPrefix = require('gulp-autoprefixer'),
     concat = require('gulp-concat'),
     BS = require('browser-sync'),
     htmlMin = require('gulp-htmlmin'),
     rename = require('gulp-rename'),
-    cssMinify = require('gulp-csso');
 
 
 function html()

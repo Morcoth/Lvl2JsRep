@@ -1,0 +1,38 @@
+
+        .draggable {
+            width: 200px;
+            height: 200px;
+            border: 1px solid orangered;
+            background-color: coral;
+        }
+
+        #draggable-parent {
+            width: 500px;
+            height: 500px;
+            border: 1px solid green;
+            background-color: lightgreen;
+        }
+
+        #droppable {
+            width: 300px;
+            height: 300px;
+            border: 1px dotted green;
+            background-color: lightgreen;
+        }
+        .wrong{
+            border: 3px solid red;
+        }
+        .right{
+            border: 3px solid green;
+        }
+        .carouseleslick{
+            align-content: center;
+            width: 360px;
+            align-self: center;
+            justify-content: center;
+        }
+        .slick-slide
+        {
+             width: 360px;
+        }
+
